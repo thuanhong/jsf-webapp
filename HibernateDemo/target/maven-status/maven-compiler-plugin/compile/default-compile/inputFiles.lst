@@ -1,0 +1,3 @@
+/app/HibernateDemo/src/main/java/stackjava/com/hibernatedemo/model/Customer.java
+/app/HibernateDemo/src/main/java/stackjava/com/hibernatedemo/dao/CustomerDAO.java
+/app/HibernateDemo/src/main/java/stackjava/com/hibernatedemo/MainApp.java

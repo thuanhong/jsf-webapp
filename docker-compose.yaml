@@ -1,0 +1,35 @@
+version: "3"
+services:
+  web:
+    build: .
+    ports:
+      - "8080:8080"
+    volumes:
+      - ~/jsf-webapp:/app
+    depends_on:
+      - database
+    environment:
+      MYSQL_DATABASE: jdbc:mysql://database:3306/javawebtutor
+      # So you don't have to use root, but you can if you like
+      MYSQL_USER: user
+      # You can use whatever password you like
+      MYSQL_PASSWORD: password
+      # Password for root access
+      MYSQL_ROOT_PASSWORD: password
+    command: tail -f /dev/null
+    links:
+      - database:database
+  database:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'javawebtutor'
+      # So you don't have to use root, but you can if you like
+      MYSQL_USER: 'user'
+      # You can use whatever password you like
+      MYSQL_PASSWORD: 'password'
+      # Password for root access
+      MYSQL_ROOT_PASSWORD: 'password'
+    ports:
+      # <Port exposed> : < MySQL Port running inside container>
+      - '3306:3306'

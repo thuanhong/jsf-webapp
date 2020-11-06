@@ -1,11 +1,16 @@
 ## Build docker images
 
-docker build -t jsf-java-images .
+- docker build -t jsf-java-images .
 
 ## Run docker images
 
-docker run -it -p 8080:8080 -v ~/jsf-webapp:/app jsf-java-images:latest
+- docker exec -it [container-jsf-id] /bin/sh
 
 ## Run jsf web
 
-/bin/sh run_server.sh JavaServerFaces
+- /bin/sh run_server.sh SampleWebApp
+
+## Generate project
+
+- mvn archetype:generate -DgroupId=com.sample.webproject -DartifactId=SampleWebApp -DarchetypeArtifactId=maven-archetype-webapp -DinteractiveMode=false
+
