@@ -14,6 +14,10 @@
         <property name="format_sql">true</property>
         <property name="hbm2ddl.auto">update</property>
         
-        <mapping class="com.sample.webproject.Customer" />
+        <mapping class="com.sample.webproject.models.Tables" />
+        <mapping class="com.sample.webproject.models.OrderAndFood" />
+        <mapping class="com.sample.webproject.models.Orders" />
+        <mapping class="com.sample.webproject.models.Staff" />
+        <mapping class="com.sample.webproject.models.Menu" />
     </session-factory>
 </hibernate-configuration>
