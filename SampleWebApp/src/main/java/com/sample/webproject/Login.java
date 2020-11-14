@@ -1,7 +1,7 @@
 package com.sample.webproject;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 import javax.faces.application.FacesMessage;
@@ -17,80 +17,78 @@ import com.sample.webproject.models.Staff;
 
 
 @ManagedBean
-@RequestScoped
+@SessionScoped
 public class Login implements Serializable {
-    private String pwd;
-	private String msg;
-	private String user;
+    private String Pwd;
+	private String Msg;
+	private String User;
 
 
     public Login() {
+        this.Msg = "";
     }
 
     //validate login
 	public String validateUsernamePassword() {
-		List<Staff> list = LoginDAO.login(user, pwd);
+		List<Staff> list = LoginDAO.login(this.User, this.Pwd);
 		if (!list.isEmpty()) {
 			HttpSession session = SessionUtils.getSession();
 			session.setAttribute("username", list.get(0).getStaffName());
-			return "admin";
+			return "/secure/home";
 		} else {
-			FacesContext.getCurrentInstance().addMessage(
-					null,
-					new FacesMessage(FacesMessage.SEVERITY_WARN,
-							"Incorrect Username and Passowrd",
-							"Please enter correct username and Password"));
-			return "login";
+			this.Msg = "Incorrect Username and Passowrd\nPlease enter correct username and Password";
+			return "/login";
 		}
 	}
 
 	//logout event, invalidate session
 	public String logout() {
-		HttpSession session = SessionUtils.getSession();
-		session.invalidate();
-		return "login";
+		// HttpSession session = SessionUtils.getSession();
+        // session.invalidate();
+        FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+		return "/login";
 	}
 
     /**
-     * @return String return the pwd
+     * @return String return the Pwd
      */
     public String getPwd() {
-        return pwd;
+        return Pwd;
     }
 
     /**
-     * @param pwd the pwd to set
+     * @param Pwd the Pwd to set
      */
-    public void setPwd(String pwd) {
-        this.pwd = pwd;
+    public void setPwd(String Pwd) {
+        this.Pwd = Pwd;
     }
 
     /**
-     * @return String return the msg
+     * @return String return the Msg
      */
     public String getMsg() {
-        return msg;
+        return Msg;
     }
 
     /**
-     * @param msg the msg to set
+     * @param Msg the Msg to set
      */
-    public void setMsg(String msg) {
-        this.msg = msg;
+    public void setMsg(String Msg) {
+        this.Msg = Msg;
     }
 
     /**
-     * @return String return the user
+     * @return String return the User
      */
     public String getUser() {
-        return user;
+        return User;
     }
 
     /**
-     * @param user the user to set
+     * @param User the User to set
      */
-    public void setUser(String user) {
-        this.user = user;
+    public void setUser(String User) {
+        this.User = User;
     }
 
 }

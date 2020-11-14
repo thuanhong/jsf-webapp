@@ -1,72 +1,40 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://java.sun.com/jsf/html">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
 <h:head>
 	<title>login</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+	<h:outputStylesheet library = "css" name = "login.css" /> 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </h:head>
 <h:body>
-	<h:form>
-		<h3>JSF Login Logout</h3>
-		<h:outputText value="Username" />
-		<h:inputText id="username" value="#{login.user}"></h:inputText>
-		<h:message for="username"></h:message>
-		<br /><br />
-		
-		<h:outputText value="Password" />
-		<h:inputSecret id="password" value="#{login.pwd}"></h:inputSecret>
-		<h:message for="password"></h:message>
-		<br /><br />
-		
-		<h:commandButton action="#{login.validateUsernamePassword}"
-			value="Login"></h:commandButton>
-	</h:form>
-	<div styleClass="container">
-		<h2>Login</h2>
-		<h:form styleClass="needs-validation">
-		  <div styleClass="form-group">
-			<h:outputText value="Username" />
-			<h:inputText styleClass="form-control" id="uname" placeholder="Enter username" required="true" />
-			<div styleClass="valid-feedback">Valid.</div>
-			<div styleClass="invalid-feedback">Please fill out this field.</div>
-		  </div>
-		  <div styleClass="form-group">
-			<label for="pwd">Password:</label>
-			<h:inputSecret id="password"></h:inputSecret>
-			<div styleClass="valid-feedback">Valid.</div>
-			<div styleClass="invalid-feedback">Please fill out this field.</div>
-		  </div>
-		  <h:commandButton action="#{login.validateUsernamePassword}"
-		  value="Login" styleClass="btn btn-primary">Submit</h:commandButton>
-		</h:form>
-	  </div>
-	  
-	  <script>
-	  // Disable form submissions if there are invalid fields
-	  (function() {
-		'use strict';
-		window.addEventListener('load', function() {
-		  // Get the forms we want to add validation styles to
-		  var forms = document.getElementsBystyleClassName('needs-validation');
-		  // Loop over them and prevent submission
-		  var validation = Array.prototype.filter.call(forms, function(form) {
-			form.addEventListener('submit', function(event) {
-			  if (form.checkValidity() === false) {
-				event.preventDefault();
-				event.stopPropagation();
-			  }
-			  form.styleClassList.add('was-validated');
-			}, false);
-		  });
-		}, false);
-	  })();
-	  </script>
-	  
+	<h:panelGroup layout="block" class="row h-100 justify-content-center">
+		<h:panelGroup layout="block" class="col-sm-12 col-md-6 col-xl-4 my-auto">
+			<h:panelGroup layout="block" styleClass="container bg-dark text-white p-5">
+				<h2 styleClass="text-center">Login</h2>
+				<h:form>
+				  <h:panelGroup layout="block" styleClass="form-group">
+					<h:outputText value="Username" />
+					<h:inputText value="#{login.user}" styleClass="form-control" id="uname" p:placeholder="Enter username" required="true" />
+				  </h:panelGroup>
+				  <h:panelGroup layout="block" styleClass="form-group">
+					<h:outputText value="Password" />
+					<h:inputSecret value="#{login.pwd}" styleClass="form-control" p:placeholder="Enter password" id="password"></h:inputSecret>
+				  </h:panelGroup>
+				  <h:outputText value="#{login.msg}" />
+				  <h:commandButton action="#{login.validateUsernamePassword}"
+				  value="Login" styleClass="btn btn-danger btn-block"></h:commandButton>
+				</h:form>
+			</h:panelGroup>
+		</h:panelGroup>
+	</h:panelGroup>
 </h:body>
 </html>
