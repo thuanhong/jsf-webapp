@@ -12,9 +12,11 @@ var closeModal = document.getElementsByClassName("close")[0];
 //   modal.style.display = "block";
 // }
 
-function showModal(element) {
+function showModal(element, id) {
   console.log(element);
-
+  let header = document.getElementById('tableId');
+  header.innerHTML = id;
+  modal.style.display = "block";
 }
 
 // When the user clicks on <span> (x), close the modal

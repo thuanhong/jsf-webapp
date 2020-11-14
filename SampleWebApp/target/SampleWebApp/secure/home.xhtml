@@ -40,29 +40,78 @@
   <div class="container">
     <h3 class="border-bottom">Floor 1</h3>
     <div class="row">
-      <ui:repeat value="#{home.users}" var="user">
-        <h:panelGroup styleClass="col-2 p-5" layout="block">
+      <ui:repeat value="#{home.table}" var="table">
+        <h:panelGroup rendered="#{table.position=='Floor 1'}" styleClass="col-2 p-5" layout="block">
           <h:graphicImage styleClass="img-fluid" library="images" name="table.png" />
-          <h:commandButton value="#{user}" onclick="setTheValue()" styleClass="badge badge-info d-block m-2 p-1" />
+          <h:commandButton value="#{table.id}" onclick="showModal(this, '#{table.id}')" styleClass="badge badge-info d-block p-1 btn btn-primary btn-block mt-2" type="button" />
+        </h:panelGroup>
+      </ui:repeat>
+    </div>
+
+    <h3 class="border-bottom">Floor 2</h3>
+    <div class="row">
+      <ui:repeat value="#{home.table}" var="table">
+        <h:panelGroup rendered="#{table.position=='Floor 2'}" styleClass="col-2 p-5" layout="block">
+          <h:graphicImage styleClass="img-fluid" library="images" name="table.png" />
+          <h:commandButton value="#{table.id}" onclick="showModal(this, '#{table.id}')" styleClass="badge badge-info d-block p-1 btn btn-primary btn-block mt-2" type="button" />
+        </h:panelGroup>
+      </ui:repeat>
+    </div>
+
+    <h3 class="border-bottom">Floor 3</h3>
+    <div class="row">
+      <ui:repeat value="#{home.table}" var="table">
+        <h:panelGroup rendered="#{table.position=='Floor 3'}" styleClass="col-2 p-5" layout="block">
+          <h:graphicImage styleClass="img-fluid" library="images" name="table.png" />
+          <h:commandButton value="#{table.id}" onclick="showModal(this, '#{table.id}')" styleClass="badge badge-info d-block p-1 btn btn-primary btn-block mt-2" type="button" />
         </h:panelGroup>
       </ui:repeat>
     </div>
   </div>
 
   <div id="myModal" class="modal">
-
     <!-- Modal content -->
     <div class="modal-content">
       <div class="modal-header">
         <span class="close">&times;</span>
-        <h2>Modal Header</h2>
+        <h2 id="tableId"></h2>
       </div>
       <div class="modal-body">
-        <p>Some text in the Modal Body</p>
-        <p>Some other text...</p>
-      </div>
-      <div class="modal-footer">
-        <h3>Modal Footer</h3>
+        <div class="container">
+          <h2>Menu</h2>
+          <br/>
+          <!-- Nav tabs -->
+          <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" data-toggle="tab" href="#food">Food</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-toggle="tab" href="#drink">Drink</a>
+            </li>
+          </ul>
+        
+          <!-- Tab panes -->
+          <div class="tab-content">
+            <div id="food" class="container tab-pane active">
+              <div class="row">
+                <ui:repeat value="#{menuBean.foodAndDrink}" var="menuObj">
+                  <h:panelGroup rendered="#{menuObj.kind=='food'}" styleClass="col-2 m-1" layout="block">
+                    <h:outputText styleClass="badge badge-success p-3" value="#{menuObj.name}" />
+                  </h:panelGroup>
+                </ui:repeat>
+              </div>
+            </div>
+            <div id="drink" class="container tab-pane fade">
+              <div class="row">
+                <ui:repeat value="#{menuBean.foodAndDrink}" var="menuObj">
+                  <h:panelGroup rendered="#{menuObj.kind=='drink'}" styleClass="col-2 m-1" layout="block">
+                    <h:outputText styleClass="badge badge-success p-3" value="#{menuObj.name}" />
+                  </h:panelGroup>
+                </ui:repeat>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   

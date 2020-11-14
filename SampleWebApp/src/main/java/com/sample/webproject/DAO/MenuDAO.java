@@ -12,7 +12,7 @@ public class MenuDAO {
 
 	public static List<Menu> GetAll() {
         Session session = HibernateUtil.getSessionFactory().openSession();
-		List<Menu> list = session.createQuery("FROM Menu").list()
+		List<Menu> list = session.createQuery("FROM Menu").list();
 		return list;
 	}
 }

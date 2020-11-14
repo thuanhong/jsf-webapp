@@ -15,56 +15,30 @@ import com.sample.webproject.util.HibernateUtil;
 import com.sample.webproject.util.SessionUtils;
 import com.sample.webproject.DAO.LoginDAO;
 import com.sample.webproject.models.Staff;
-
+import com.sample.webproject.models.Tables;
+import com.sample.webproject.DAO.TableDAO;
 
 @ManagedBean
 @SessionScoped
 public class Home implements Serializable {
-    private List<Integer> Users = new ArrayList<Integer>();
-    private Integer Count;
+    private List<Tables> Table;
     
     public Home() {
-        this.Users.add(1); 
-        this.Users.add(2); 
-        this.Users.add(3); 
-        this.Users.add(4); 
-        this.Users.add(5);
-        this.Users.add(6); 
-        this.Users.add(7); 
-        this.Users.add(8); 
-        this.Users.add(9); 
-        this.Users.add(10); 
-        this.Count = 10;
-    }
-
-
-    /**
-     * @return List<Integer> return the Users
-     */
-    public List<Integer> getUsers() {
-        return Users;
+        this.Table = TableDAO.GetAll();
     }
 
     /**
-     * @param Users the Users to set
+     * @return List<Tables> return the Table
      */
-    public void setUsers(List<Integer> Users) {
-        this.Users = Users;
-    }
-
-
-    /**
-     * @return Integer return the Count
-     */
-    public Integer getCount() {
-        return Count;
+    public List<Tables> getTable() {
+        return Table;
     }
 
     /**
-     * @param Count the Count to set
+     * @param Table the Table to set
      */
-    public void setCount(Integer Count) {
-        this.Count = Count;
+    public void setTable(List<Tables> Table) {
+        this.Table = Table;
     }
 
 }

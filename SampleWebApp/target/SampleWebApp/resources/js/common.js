@@ -5,19 +5,22 @@ var modal = document.getElementById("myModal");
 var btn = document.getElementById("myBtn");
 
 // Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
+var closeModal = document.getElementsByClassName("close")[0];
 
 // When the user clicks the button, open the modal 
-btn.onclick = function() {
+// btn.onclick = function() {
+//   modal.style.display = "block";
+// }
+
+function showModal(element, id) {
+  console.log(element);
+  let header = document.getElementById('tableId');
+  header.innerHTML = id;
   modal.style.display = "block";
 }
 
-function setTheValue() {
-  alert("Hello")
-}
-
 // When the user clicks on <span> (x), close the modal
-span.onclick = function() {
+closeModal.onclick = function() {
   modal.style.display = "none";
 }
 
