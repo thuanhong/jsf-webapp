@@ -15,7 +15,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </h:head>
 <h:body>
-  <h:form>
+  <h:form id="mainForm">
     <div class="navbar navbar-expand-md bg-dark navbar-dark">
       <a class="navbar-brand" href="/secure/home">Coffee</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -35,87 +35,126 @@
         </ul>
       </div>
     </div>
-  </h:form>
 
-  <div class="container">
-    <h3 class="border-bottom">Floor 1</h3>
-    <div class="row">
-      <ui:repeat value="#{home.table}" var="table">
-        <h:panelGroup rendered="#{table.position=='Floor 1'}" styleClass="col-2 p-5" layout="block">
-          <h:graphicImage styleClass="img-fluid" library="images" name="table.png" />
-          <h:commandButton value="#{table.id}" onclick="showModal(this, '#{table.id}')" styleClass="badge badge-info d-block p-1 btn btn-primary btn-block mt-2" type="button" />
-        </h:panelGroup>
-      </ui:repeat>
-    </div>
 
-    <h3 class="border-bottom">Floor 2</h3>
-    <div class="row">
-      <ui:repeat value="#{home.table}" var="table">
-        <h:panelGroup rendered="#{table.position=='Floor 2'}" styleClass="col-2 p-5" layout="block">
-          <h:graphicImage styleClass="img-fluid" library="images" name="table.png" />
-          <h:commandButton value="#{table.id}" onclick="showModal(this, '#{table.id}')" styleClass="badge badge-info d-block p-1 btn btn-primary btn-block mt-2" type="button" />
-        </h:panelGroup>
-      </ui:repeat>
-    </div>
+    <div id="myModal" class="modal">
+      <!-- Modal content -->
+      <div class="modal-content">
+        <div class="modal-header">
+          <span class="close">&times;</span>
+        </div>
+        <div class="modal-body">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-5">
+                <h2 id="tableId"></h2>
+                <div>
+                  <h:dataTable id="tableFood" styleClass="table" value="#{home.food}" var="product">
+                    <h:column>
+                      <f:facet name="header">ID</f:facet>
+                      #{product.foodId.id}
+                    </h:column>
 
-    <h3 class="border-bottom">Floor 3</h3>
-    <div class="row">
-      <ui:repeat value="#{home.table}" var="table">
-        <h:panelGroup rendered="#{table.position=='Floor 3'}" styleClass="col-2 p-5" layout="block">
-          <h:graphicImage styleClass="img-fluid" library="images" name="table.png" />
-          <h:commandButton value="#{table.id}" onclick="showModal(this, '#{table.id}')" styleClass="badge badge-info d-block p-1 btn btn-primary btn-block mt-2" type="button" />
-        </h:panelGroup>
-      </ui:repeat>
-    </div>
-  </div>
+                    <h:column>
+                      <f:facet name="header">Name</f:facet>
+                      #{product.foodId.name}
+                    </h:column>
 
-  <div id="myModal" class="modal">
-    <!-- Modal content -->
-    <div class="modal-content">
-      <div class="modal-header">
-        <span class="close">&times;</span>
-        <h2 id="tableId"></h2>
-      </div>
-      <div class="modal-body">
-        <div class="container">
-          <h2>Menu</h2>
-          <br/>
-          <!-- Nav tabs -->
-          <ul class="nav nav-tabs" role="tablist">
-            <li class="nav-item">
-              <a class="nav-link active" data-toggle="tab" href="#food">Food</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" data-toggle="tab" href="#drink">Drink</a>
-            </li>
-          </ul>
-        
-          <!-- Tab panes -->
-          <div class="tab-content">
-            <div id="food" class="container tab-pane active">
-              <div class="row">
-                <ui:repeat value="#{menuBean.foodAndDrink}" var="menuObj">
-                  <h:panelGroup rendered="#{menuObj.kind=='food'}" styleClass="col-2 m-1" layout="block">
-                    <h:outputText styleClass="badge badge-success p-3" value="#{menuObj.name}" />
-                  </h:panelGroup>
-                </ui:repeat>
+                    <h:column>
+                      <f:facet name="header">Amount</f:facet>
+                      #{product.amount}
+                    </h:column>
+                  </h:dataTable>
+                </div>
               </div>
-            </div>
-            <div id="drink" class="container tab-pane fade">
-              <div class="row">
-                <ui:repeat value="#{menuBean.foodAndDrink}" var="menuObj">
-                  <h:panelGroup rendered="#{menuObj.kind=='drink'}" styleClass="col-2 m-1" layout="block">
-                    <h:outputText styleClass="badge badge-success p-3" value="#{menuObj.name}" />
-                  </h:panelGroup>
-                </ui:repeat>
+              <div class="col-md-7">
+                <h2>Menu</h2>
+                <br />
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs" role="tablist">
+                  <li class="nav-item">
+                    <a class="nav-link active" data-toggle="tab" href="#food">Food</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#drink">Drink</a>
+                  </li>
+                </ul>
+
+                <!-- Tab panes -->
+                <div class="tab-content">
+                  <div id="food" class="container tab-pane active">
+                    <div class="row">
+                      <ui:repeat value="#{menuBean.foodAndDrink}" var="menuObj">
+                        <h:panelGroup rendered="#{menuObj.kind=='food'}" styleClass="col-2 m-1" layout="block">
+                          <h:outputText styleClass="badge badge-success p-3" value="#{menuObj.name}" />
+                        </h:panelGroup>
+                      </ui:repeat>
+                    </div>
+                  </div>
+                  <div id="drink" class="container tab-pane fade">
+                    <div class="row">
+                      <ui:repeat value="#{menuBean.foodAndDrink}" var="menuObj">
+                        <h:panelGroup rendered="#{menuObj.kind=='drink'}" styleClass="col-2 m-1" layout="block">
+                          <h:outputText value="#{menuObj.name}" />
+                        </h:panelGroup>
+                      </ui:repeat>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  
-  </div>
+
+    <div class="container">
+      <h3 class="border-bottom">Floor 1</h3>
+      <div class="row">
+        <ui:repeat value="#{home.table}" var="table">
+          <h:panelGroup rendered="#{table.position=='Floor 1'}" styleClass="col-2 p-5" layout="block">
+            <h:graphicImage styleClass="img-fluid" library="images" name="table.png"
+              style="#{table.table.isEmpty() ? 'background-color: white' : 'background-color: red'}" />
+            <h:commandButton update="render" value="#{table.id}" actionListener="#{home.listener(table.id)}"
+              onclick="showModal(this, '#{table.id}')"
+              styleClass="badge badge-info d-block p-1 btn btn-primary btn-block mt-2" type="button">
+
+              <f:ajax event="click" render=":mainForm:tableFood" listener="#{home.listener(table.id)}"></f:ajax>
+            </h:commandButton>
+          </h:panelGroup>
+        </ui:repeat>
+      </div>
+
+      <h3 class="border-bottom">Floor 2</h3>
+      <div class="row">
+        <ui:repeat value="#{home.table}" var="table">
+          <h:panelGroup rendered="#{table.position=='Floor 2'}" styleClass="col-2 p-5" layout="block">
+            <h:graphicImage styleClass="img-fluid" library="images" name="table.png"
+              style="#{table.table.isEmpty() ? 'background-color: white' : 'background-color: red'}" />
+            <h:commandButton value="#{table.id}" onclick="showModal(this, '#{table.id}')"
+              styleClass="badge badge-info d-block p-1 btn btn-primary btn-block mt-2" type="button">
+
+              <f:ajax event="click" render=":mainForm:tableFood" listener="#{home.listener(table.id)}"></f:ajax>
+            </h:commandButton>
+          </h:panelGroup>
+        </ui:repeat>
+      </div>
+
+      <h3 class="border-bottom">Floor 3</h3>
+      <div class="row">
+        <ui:repeat value="#{home.table}" var="table">
+          <h:panelGroup rendered="#{table.position=='Floor 3'}" styleClass="col-2 p-5" layout="block">
+            <h:graphicImage styleClass="img-fluid" library="images" name="table.png"
+              style="#{table.table.isEmpty() ? 'background-color: white' : 'background-color: red'}" />
+            <h:commandButton value="#{table.id}" onclick="showModal(this, '#{table.id}')"
+              styleClass="badge badge-info d-block p-1 btn btn-primary btn-block mt-2" type="button" />
+          </h:panelGroup>
+        </ui:repeat>
+      </div>
+    </div>
+
+
+  </h:form>
   <h:outputScript library="js" name="common.js" />
 
 </h:body>

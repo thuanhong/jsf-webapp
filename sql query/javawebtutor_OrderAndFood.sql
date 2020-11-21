@@ -1,0 +1,12 @@
+INSERT INTO javawebtutor.OrderAndFood (amount, food_id, order_id) VALUES (10, 1, 1);
+INSERT INTO javawebtutor.OrderAndFood (amount, food_id, order_id) VALUES (10, 2, 1);
+INSERT INTO javawebtutor.OrderAndFood (amount, food_id, order_id) VALUES (10, 3, 1);
+INSERT INTO javawebtutor.OrderAndFood (amount, food_id, order_id) VALUES (10, 4, 1);
+INSERT INTO javawebtutor.OrderAndFood (amount, food_id, order_id) VALUES (10, 5, 1);
+INSERT INTO javawebtutor.OrderAndFood (amount, food_id, order_id) VALUES (10, 6, 1);
+INSERT INTO javawebtutor.OrderAndFood (amount, food_id, order_id) VALUES (10, 7, 1);
+INSERT INTO javawebtutor.OrderAndFood (amount, food_id, order_id) VALUES (10, 8, 1);
+INSERT INTO javawebtutor.OrderAndFood (amount, food_id, order_id) VALUES (10, 9, 1);
+INSERT INTO javawebtutor.OrderAndFood (amount, food_id, order_id) VALUES (10, 10, 1);
+INSERT INTO javawebtutor.OrderAndFood (amount, food_id, order_id) VALUES (10, 11, 1);
+INSERT INTO javawebtutor.OrderAndFood (amount, food_id, order_id) VALUES (10, 12, 1);

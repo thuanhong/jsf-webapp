@@ -33,8 +33,8 @@ public class Login implements Serializable {
 		List<Staff> list = LoginDAO.login(this.User, this.Pwd);
 		if (!list.isEmpty()) {
 			HttpSession session = SessionUtils.getSession();
-			session.setAttribute("username", list.get(0).getStaffName());
-			return "/secure/home";
+            session.setAttribute("username", list.get(0).getStaffName());
+            return "/secure/home";
 		} else {
 			this.Msg = "Incorrect Username and Passowrd\nPlease enter correct username and Password";
 			return "/login";

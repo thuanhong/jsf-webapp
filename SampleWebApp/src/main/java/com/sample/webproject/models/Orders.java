@@ -14,10 +14,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
-
 import com.sample.webproject.models.Staff;
 import com.sample.webproject.models.OrderAndFood;
 import com.sample.webproject.models.Tables;
+
 import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;

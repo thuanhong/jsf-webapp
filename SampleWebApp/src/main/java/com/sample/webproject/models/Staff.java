@@ -11,12 +11,15 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.OneToMany;
-
+import javax.persistence.ManyToOne;
+import javax.persistence.JoinColumn;
 
 import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;
+
 import com.sample.webproject.models.Orders;
+import com.sample.webproject.models.Role;
 
 @Entity
 @Table(name = "Staff")
@@ -44,6 +47,10 @@ public class Staff{
 
 	@OneToMany(mappedBy = "staff")
     private List<Orders> order = new ArrayList<Orders>();
+
+    // @ManyToOne
+    // @JoinColumn(name="role_name")
+	// private Role role;
 
     /**
      * @return int return the id
@@ -142,5 +149,4 @@ public class Staff{
     public void setOrder(List<Orders> order) {
         this.order = order;
     }
-
 }

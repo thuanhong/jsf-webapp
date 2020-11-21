@@ -17,6 +17,7 @@ function showModal(element, id) {
   let header = document.getElementById('tableId');
   header.innerHTML = id;
   modal.style.display = "block";
+  // remote(id);
 }
 
 // When the user clicks on <span> (x), close the modal
@@ -30,3 +31,5 @@ window.onclick = function(event) {
     modal.style.display = "none";
   }
 }
+
+

@@ -21,17 +21,17 @@
 			<h:panelGroup layout="block" styleClass="container bg-dark text-white p-5">
 				<h2 styleClass="text-center">Login</h2>
 				<h:form>
-				  <h:panelGroup layout="block" styleClass="form-group">
+					<h:panelGroup layout="block" styleClass="form-group">
 					<h:outputText value="Username" />
 					<h:inputText value="#{login.user}" styleClass="form-control" id="uname" p:placeholder="Enter username" required="true" />
-				  </h:panelGroup>
-				  <h:panelGroup layout="block" styleClass="form-group">
+					</h:panelGroup>
+					<h:panelGroup layout="block" styleClass="form-group">
 					<h:outputText value="Password" />
 					<h:inputSecret value="#{login.pwd}" styleClass="form-control" p:placeholder="Enter password" id="password"></h:inputSecret>
-				  </h:panelGroup>
-				  <h:outputText value="#{login.msg}" />
-				  <h:commandButton action="#{login.validateUsernamePassword}"
-				  value="Login" styleClass="btn btn-danger btn-block"></h:commandButton>
+					</h:panelGroup>
+					<h:outputText value="#{login.msg}" />
+					<h:commandButton action="#{login.validateUsernamePassword}"
+					value="Login" styleClass="btn btn-danger btn-block"></h:commandButton>
 				</h:form>
 			</h:panelGroup>
 		</h:panelGroup>
