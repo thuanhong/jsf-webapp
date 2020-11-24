@@ -1,0 +1,1 @@
+INSERT INTO javawebtutor.Staff (id, address, create_at, dob, password, staff_name) VALUES (1, 'VN', '2020-11-13 20:21:27', '2020-11-13 20:21:29', '1234231', 'thuanhong');
