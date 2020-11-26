@@ -13,11 +13,12 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  
 </h:head>
 <h:body>
   <h:form id="mainForm">
     <div class="navbar navbar-expand-md bg-dark navbar-dark">
-      <a class="navbar-brand" href="/secure/home">Coffee</a>
+      <a class="navbar-brand" href="/secure/home.xhtml">Coffee</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -39,7 +40,7 @@
 
     <div id="myModal" class="modal">
       <!-- Modal content -->
-      <div class="modal-content">
+      <div class="modal-content m-5 h-100">
         <div class="modal-header">
           <span class="close">&times;</span>
         </div>
@@ -48,7 +49,7 @@
             <div class="row">
               <div class="col-md-5">
                 <h2 id="tableId"></h2>
-                <div>
+                <div class="overflow-auto" style="height: 40vh">
                   <h:dataTable id="tableFood" styleClass="table" value="#{home.food}" var="product">
                     <h:column>
                       <f:facet name="header">ID</f:facet>
@@ -66,6 +67,9 @@
                     </h:column>
                   </h:dataTable>
                 </div>
+                <hr/>
+                <h2>Add more</h2>
+                <div id='tempOrder' class="overflow-auto"></div>
               </div>
               <div class="col-md-7">
                 <h2>Menu</h2>
@@ -83,20 +87,24 @@
                 <!-- Tab panes -->
                 <div class="tab-content">
                   <div id="food" class="container tab-pane active">
-                    <div class="row">
+                    <div class="d-flex flex-wrap">
                       <ui:repeat value="#{menuBean.foodAndDrink}" var="menuObj">
-                        <h:panelGroup rendered="#{menuObj.kind=='food'}" styleClass="col-2 m-1" layout="block">
-                          <h:outputText styleClass="badge badge-success p-3" value="#{menuObj.name}" />
-                        </h:panelGroup>
+                          <h:commandButton rendered="#{menuObj.kind=='food'}"
+                            value="#{menuObj.name}" onclick="addItem('#{menuObj.name}')"
+                            styleClass="badge badge-success p-3 m-1 d-block">
+                            <f:ajax execute="@form" render="@none" ></f:ajax>
+                          </h:commandButton>
                       </ui:repeat>
                     </div>
                   </div>
                   <div id="drink" class="container tab-pane fade">
-                    <div class="row">
+                    <div class="d-flex flex-wrap">
                       <ui:repeat value="#{menuBean.foodAndDrink}" var="menuObj">
-                        <h:panelGroup rendered="#{menuObj.kind=='drink'}" styleClass="col-2 m-1" layout="block">
-                          <h:outputText value="#{menuObj.name}" />
-                        </h:panelGroup>
+                        <h:commandButton rendered="#{menuObj.kind=='drink'}"
+                          value="#{menuObj.name}" onclick="addItem('#{menuObj.name}')"
+                          styleClass="badge badge-success p-3 m-1 d-block">
+                          <f:ajax execute="@form" render="@none" ></f:ajax>
+                        </h:commandButton>
                       </ui:repeat>
                     </div>
                   </div>
@@ -116,9 +124,8 @@
             <h:graphicImage styleClass="img-fluid" library="images" name="table.png"
               style="#{table.table.isEmpty() ? 'background-color: white' : 'background-color: red'}" />
             <h:commandButton update="render" value="#{table.id}" actionListener="#{home.listener(table.id)}"
-              onclick="showModal(this, '#{table.id}')"
+              onclick="showModal('#{table.id}')"
               styleClass="badge badge-info d-block p-1 btn btn-primary btn-block mt-2" type="button">
-
               <f:ajax event="click" render=":mainForm:tableFood" listener="#{home.listener(table.id)}"></f:ajax>
             </h:commandButton>
           </h:panelGroup>
@@ -131,9 +138,8 @@
           <h:panelGroup rendered="#{table.position=='Floor 2'}" styleClass="col-2 p-5" layout="block">
             <h:graphicImage styleClass="img-fluid" library="images" name="table.png"
               style="#{table.table.isEmpty() ? 'background-color: white' : 'background-color: red'}" />
-            <h:commandButton value="#{table.id}" onclick="showModal(this, '#{table.id}')"
+            <h:commandButton value="#{table.id}" onclick="showModal('#{table.id}')"
               styleClass="badge badge-info d-block p-1 btn btn-primary btn-block mt-2" type="button">
-
               <f:ajax event="click" render=":mainForm:tableFood" listener="#{home.listener(table.id)}"></f:ajax>
             </h:commandButton>
           </h:panelGroup>
@@ -146,8 +152,10 @@
           <h:panelGroup rendered="#{table.position=='Floor 3'}" styleClass="col-2 p-5" layout="block">
             <h:graphicImage styleClass="img-fluid" library="images" name="table.png"
               style="#{table.table.isEmpty() ? 'background-color: white' : 'background-color: red'}" />
-            <h:commandButton value="#{table.id}" onclick="showModal(this, '#{table.id}')"
-              styleClass="badge badge-info d-block p-1 btn btn-primary btn-block mt-2" type="button" />
+            <h:commandButton value="#{table.id}" onclick="showModal('#{table.id}')"
+              styleClass="badge badge-info d-block p-1 btn btn-primary btn-block mt-2" type="button">
+              <f:ajax event="click" render=":mainForm:tableFood" listener="#{home.listener(table.id)}"></f:ajax>
+            </h:commandButton>
           </h:panelGroup>
         </ui:repeat>
       </div>
@@ -155,8 +163,7 @@
 
 
   </h:form>
-  <h:outputScript library="js" name="common.js" />
-
+  <h:outputScript name="common.js" library='js' ></h:outputScript>
 </h:body>
 
 </html>

@@ -1,6 +1,8 @@
 # Use a minimal image as parent
 FROM openjdk:8-jdk-alpine
 
+EXPOSE 8080
+
 WORKDIR /app
 
 COPY . .
@@ -42,8 +44,4 @@ RUN wget http://archive.apache.org/dist/maven/maven-3/$MAVEN_VERSION/binaries/ap
   rm apache-maven-$MAVEN_VERSION-bin.tar.gz && \
   mv apache-maven-$MAVEN_VERSION /usr/lib/mvn
 
-RUN chmod a+rx /opt /opt/tomcat/ /opt/tomcat/bin /opt/tomcat/bin/startup.sh
-
-
-EXPOSE 8080
-
+RUN chmod a+rx /opt /opt/tomcat/ /opt/tomcat/bin /opt/tomcat/bin/startup.sh /opt/tomcat/bin/shutdown.sh
