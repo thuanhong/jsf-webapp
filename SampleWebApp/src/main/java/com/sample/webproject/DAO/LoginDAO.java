@@ -16,8 +16,6 @@ public class LoginDAO {
 		List<Staff> list = session.createQuery("FROM Staff WHERE staff_name = :user and password LIKE :password")
 				.setParameter("user", user)
 				.setParameter("password", password).list();
-
-				HibernateUtil.shutdown();
 		return list;
 	}
 }

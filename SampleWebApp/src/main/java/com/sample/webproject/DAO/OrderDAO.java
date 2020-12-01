@@ -13,8 +13,6 @@ public class OrderDAO {
 	public static List<Orders> GetAll() {
     Session session = HibernateUtil.getSessionFactory().openSession();
 		List<Orders> list = session.createQuery("FROM Orders").list();
-
-		HibernateUtil.shutdown();
 		return list;
 	}
 

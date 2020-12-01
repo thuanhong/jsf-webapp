@@ -15,7 +15,6 @@ public class TableDAO {
     Session session = HibernateUtil.getSessionFactory().openSession();
 		List<Tables> list = session.createQuery("FROM Tables").list();
 
-		HibernateUtil.shutdown();
 		return list;
 	}
 
@@ -23,7 +22,6 @@ public class TableDAO {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Tables table = session.load(Tables.class, id);
 
-		HibernateUtil.shutdown();
 		return table;
 	}
 

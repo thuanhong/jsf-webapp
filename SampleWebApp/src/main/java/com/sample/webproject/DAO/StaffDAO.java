@@ -14,8 +14,6 @@ public class StaffDAO {
 	public static Staff getStaffById(int id) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Staff staff = session.load(Staff.class, id);
-
-		HibernateUtil.shutdown();
 		return staff;
 	}
 

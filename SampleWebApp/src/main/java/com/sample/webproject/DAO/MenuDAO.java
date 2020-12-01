@@ -13,16 +13,12 @@ public class MenuDAO {
 	public static List<Menu> GetAll() {
     Session session = HibernateUtil.getSessionFactory().openSession();
 		List<Menu> list = session.createQuery("FROM Menu").list();
-
-		HibernateUtil.shutdown();
 		return list;
 	}
 
 	public static Menu getMenuById(int id) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Menu menu = session.load(Menu.class, id);
-	
-		HibernateUtil.shutdown();
 		return menu;
 	}
 }

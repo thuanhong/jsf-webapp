@@ -14,8 +14,6 @@ public class OrderAndFoodDAO {
         Session session = HibernateUtil.getSessionFactory().openSession();
 		List<OrderAndFood> list = session.createQuery("select E from OrderAndFood as E INNER JOIN Orders as O on E.orderId.id = O.id where O.table_id.id = :id")
 			.setParameter("id", id).list();
-		
-			HibernateUtil.shutdown();
 		return list;
 	}
 

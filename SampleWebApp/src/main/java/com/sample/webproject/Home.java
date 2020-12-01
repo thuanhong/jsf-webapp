@@ -69,20 +69,20 @@ public class Home implements Serializable {
         postOrder.setOrderId(Integer.toString(postOrder.getTableId()) + " " + Integer.toString(user));
         System.out.println(postOrder);
 
-        Orders newOrder = new Orders(postOrder.getOrderId(), TableDAO.getTableById(postOrder.getTableId()), 0, StaffDAO.getStaffById(user));
-        List<OrderAndFood> tempList = new ArrayList<OrderAndFood>();
+        // Orders newOrder = new Orders(postOrder.getOrderId(), TableDAO.getTableById(postOrder.getTableId()), 0, StaffDAO.getStaffById(user));
+        // List<OrderAndFood> tempList = new ArrayList<OrderAndFood>();
         
-        for (Map.Entry<String,Integer> entry : postOrder.getListFood().entrySet()) {
-            System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
-            tempList.add(new OrderAndFood(entry.getValue(), newOrder, MenuDAO.getMenuById(Integer.parseInt(entry.getKey()))));
-        }
+        // for (Map.Entry<String,Integer> entry : postOrder.getListFood().entrySet()) {
+        //     System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
+        //     tempList.add(new OrderAndFood(entry.getValue(), newOrder, MenuDAO.getMenuById(Integer.parseInt(entry.getKey()))));
+        // }
         
-        newOrder.setOrder(tempList);
-        OrderDAO.createNewOrder(newOrder);
+        // newOrder.setOrder(tempList);
+        // OrderDAO.createNewOrder(newOrder);
 
-        for (int counter = 0; counter < tempList.size(); counter++) {
-            OrderAndFoodDAO.createNewOrderAndFood(tempList.get(counter));
-        }
+        // for (int counter = 0; counter < tempList.size(); counter++) {
+        //     OrderAndFoodDAO.createNewOrderAndFood(tempList.get(counter));
+        // }
     }
 
     /**
