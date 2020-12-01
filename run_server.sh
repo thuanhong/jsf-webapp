@@ -1,8 +1,6 @@
 #!/bin/bash
 $CATALINA_HOME/bin/shutdown.sh
 
-rm -rf $CATALINA_HOME/webapps/SampleWebApp
-
 cd /app/$1
 
 mvn clean package

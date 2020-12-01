@@ -30,7 +30,7 @@ public class Orders {
 	@Id
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private String id;
 	
     @ManyToOne
     @JoinColumn(name="tableId")
@@ -47,19 +47,30 @@ public class Orders {
 	private Staff staff;
 	
 	@OneToMany(mappedBy = "orderId")
-	private List<OrderAndFood> order = new ArrayList<OrderAndFood>();
+    private List<OrderAndFood> order = new ArrayList<OrderAndFood>();
+
+    public Orders() {
+ 
+    }
+    
+    public Orders(String id, Tables table_id, int total, Staff staff) {
+        this.id = id;
+        this.table_id = table_id;
+        this.total = total;
+        this.staff = staff;
+    }
 
     /**
-     * @return int return the id
+     * @return String return the id
      */
-    public int getId() {
+    public String getId() {
         return id;
     }
 
     /**
      * @param id the id to set
      */
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

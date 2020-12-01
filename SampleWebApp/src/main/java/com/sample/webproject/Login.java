@@ -34,6 +34,7 @@ public class Login implements Serializable {
 		if (!list.isEmpty()) {
 			HttpSession session = SessionUtils.getSession();
             session.setAttribute("username", list.get(0).getStaffName());
+            session.setAttribute("id", list.get(0).getId());
             return "/secure/home.xhtml?faces-redirect=true";
 		} else {
 			this.Msg = "Incorrect Username and Passowrd\nPlease enter correct username and Password";

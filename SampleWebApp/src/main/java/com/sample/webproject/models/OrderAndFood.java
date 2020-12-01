@@ -39,7 +39,16 @@ public class OrderAndFood{
 
     @ManyToOne
     @JoinColumn(name="food_id")
-	private Menu foodId;
+    private Menu foodId;
+
+    public OrderAndFood() {
+    }
+    
+    public OrderAndFood(int amount, Orders order, Menu food) {
+        this.amount = amount;
+        this.orderId = order;
+        this.foodId = food;
+    }
 
 
     /**

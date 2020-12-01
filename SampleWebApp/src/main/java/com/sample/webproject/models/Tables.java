@@ -22,8 +22,6 @@ import com.sample.webproject.models.Orders;
 
 @Entity
 @Table(name = "Tables")
-// @NamedQueries({ @NamedQuery(name = "@FIND_ALL", query = "FROM User") })
-// @NamedNativeQueries({ @NamedNativeQuery(name = "@SQL_GET_ALL_ADDRESS", query = "SELECT id, name, address from user") })
 
 public class Tables {
 	@Id

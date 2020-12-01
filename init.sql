@@ -30,7 +30,7 @@ create table Tables
 
 create table Orders
 (
-    id       int auto_increment
+    id       varchar(255)
         primary key,
     createAt datetime null,
     total    int      null,
@@ -48,7 +48,7 @@ create table OrderAndFood
         primary key,
     amount   int null,
     food_id  int null,
-    order_id int null,
+    order_id varchar(255) null,
     constraint FK3r23napidu4r5j7yejsee97r8
         foreign key (order_id) references Orders (id),
     constraint FKrv4nnkla2v284eh8omflv0jpf
@@ -122,17 +122,17 @@ INSERT INTO javawebtutor.Menu (id, kind, name, price, status) VALUES (31, 'drink
 INSERT INTO javawebtutor.Menu (id, kind, name, price, status) VALUES (32, 'drink', 'Mai Tai', 10, 1);
 INSERT INTO javawebtutor.Menu (id, kind, name, price, status) VALUES (33, 'drink', 'Hurricane', 6, 1);
 
-INSERT INTO javawebtutor.Orders (id, createAt, total, staffId, tableId) VALUES (1, '2020-11-26 14:06:53', 100000, 1, 8);
+INSERT INTO javawebtutor.Orders (id, createAt, total, staffId, tableId) VALUES ('8 1', '2020-11-26 14:06:53', 100000, 1, 8);
 
-INSERT INTO javawebtutor.OrderAndFood (amount, food_id, order_id) VALUES (10, 1, 1);
-INSERT INTO javawebtutor.OrderAndFood (amount, food_id, order_id) VALUES (10, 2, 1);
-INSERT INTO javawebtutor.OrderAndFood (amount, food_id, order_id) VALUES (10, 3, 1);
-INSERT INTO javawebtutor.OrderAndFood (amount, food_id, order_id) VALUES (10, 4, 1);
-INSERT INTO javawebtutor.OrderAndFood (amount, food_id, order_id) VALUES (10, 5, 1);
-INSERT INTO javawebtutor.OrderAndFood (amount, food_id, order_id) VALUES (10, 6, 1);
-INSERT INTO javawebtutor.OrderAndFood (amount, food_id, order_id) VALUES (10, 7, 1);
-INSERT INTO javawebtutor.OrderAndFood (amount, food_id, order_id) VALUES (10, 8, 1);
-INSERT INTO javawebtutor.OrderAndFood (amount, food_id, order_id) VALUES (10, 9, 1);
-INSERT INTO javawebtutor.OrderAndFood (amount, food_id, order_id) VALUES (10, 10, 1);
-INSERT INTO javawebtutor.OrderAndFood (amount, food_id, order_id) VALUES (10, 11, 1);
-INSERT INTO javawebtutor.OrderAndFood (amount, food_id, order_id) VALUES (10, 12, 1);
+INSERT INTO javawebtutor.OrderAndFood (amount, food_id, order_id) VALUES (10, 1,'8 1');
+INSERT INTO javawebtutor.OrderAndFood (amount, food_id, order_id) VALUES (10, 2, '8 1');
+INSERT INTO javawebtutor.OrderAndFood (amount, food_id, order_id) VALUES (10, 3, '8 1');
+INSERT INTO javawebtutor.OrderAndFood (amount, food_id, order_id) VALUES (10, 4, '8 1');
+INSERT INTO javawebtutor.OrderAndFood (amount, food_id, order_id) VALUES (10, 5, '8 1');
+INSERT INTO javawebtutor.OrderAndFood (amount, food_id, order_id) VALUES (10, 6, '8 1');
+INSERT INTO javawebtutor.OrderAndFood (amount, food_id, order_id) VALUES (10, 7, '8 1');
+INSERT INTO javawebtutor.OrderAndFood (amount, food_id, order_id) VALUES (10, 8, '8 1');
+INSERT INTO javawebtutor.OrderAndFood (amount, food_id, order_id) VALUES (10, 9, '8 1');
+INSERT INTO javawebtutor.OrderAndFood (amount, food_id, order_id) VALUES (10, 10, '8 1');
+INSERT INTO javawebtutor.OrderAndFood (amount, food_id, order_id) VALUES (10, 11, '8 1');
+INSERT INTO javawebtutor.OrderAndFood (amount, food_id, order_id) VALUES (10, 12, '8 1');

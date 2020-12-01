@@ -44,7 +44,7 @@
         <div class="modal-header">
           <span class="close">&times;</span>
         </div>
-        <div class="modal-body">
+        <div class="modal-body" style="overflow: scroll;">
           <div class="container">
             <div class="row">
               <div class="col-md-5">
@@ -90,7 +90,7 @@
                     <div class="d-flex flex-wrap">
                       <ui:repeat value="#{menuBean.foodAndDrink}" var="menuObj">
                           <h:commandButton rendered="#{menuObj.kind=='food'}"
-                            value="#{menuObj.name}" onclick="addItem('#{menuObj.name}')"
+                            value="#{menuObj.name}" onclick="addItem('#{menuObj.id}')"
                             styleClass="badge badge-success p-3 m-1 d-block">
                             <f:ajax execute="@form" render="@none" ></f:ajax>
                           </h:commandButton>
@@ -101,7 +101,7 @@
                     <div class="d-flex flex-wrap">
                       <ui:repeat value="#{menuBean.foodAndDrink}" var="menuObj">
                         <h:commandButton rendered="#{menuObj.kind=='drink'}"
-                          value="#{menuObj.name}" onclick="addItem('#{menuObj.name}')"
+                          value="#{menuObj.name}" onclick="addItem('#{menuObj.id}')"
                           styleClass="badge badge-success p-3 m-1 d-block">
                           <f:ajax execute="@form" render="@none" ></f:ajax>
                         </h:commandButton>
@@ -112,6 +112,11 @@
               </div>
             </div>
           </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" onclick="sendParams()" >Confirm</button>
+          <h:inputText style="display: none;" id="txtOrder" value="#{home.test}"></h:inputText>
+          <h:commandButton value="B" id="print" ajax="false" action="#{home.print()}" style="display: none;" />
         </div>
       </div>
     </div>
@@ -161,7 +166,7 @@
       </div>
     </div>
 
-
+    
   </h:form>
   <h:outputScript name="common.js" library='js' ></h:outputScript>
 </h:body>

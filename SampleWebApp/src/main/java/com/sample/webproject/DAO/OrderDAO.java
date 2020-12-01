@@ -6,13 +6,32 @@ import org.hibernate.Session;
 
 import java.util.List;
 import com.sample.webproject.util.HibernateUtil;
-import com.sample.webproject.models.Tables;
+import com.sample.webproject.models.Orders;
 
 public class OrderDAO {
 
-	public static List<Tables> GetAll() {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-		List<Tables> list = session.createQuery("FROM Orders").list();
+	public static List<Orders> GetAll() {
+    Session session = HibernateUtil.getSessionFactory().openSession();
+		List<Orders> list = session.createQuery("FROM Orders").list();
+
+		HibernateUtil.shutdown();
 		return list;
 	}
+
+	public static void createNewOrder(Orders newOrder) {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		try {
+			session.beginTransaction();
+			session.save(newOrder);
+			session.getTransaction().commit();
+			System.out.println("insert success!");
+		} catch (RuntimeException e) {
+			session.getTransaction().rollback();
+			e.printStackTrace();
+		} finally {
+			session.flush();
+			HibernateUtil.shutdown();
+		}
+	}
+
 }
