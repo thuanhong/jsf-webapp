@@ -90,7 +90,7 @@
                     <div class="d-flex flex-wrap">
                       <ui:repeat value="#{menuBean.foodAndDrink}" var="menuObj">
                           <h:commandButton rendered="#{menuObj.kind=='food'}"
-                            value="#{menuObj.name}" onclick="addItem('#{menuObj.id}')"
+                            value="#{menuObj.name}" onclick="addItem('#{menuObj.id}', '#{menuObj.name}')"
                             styleClass="badge badge-success p-3 m-1 d-block">
                             <f:ajax execute="@form" render="@none" ></f:ajax>
                           </h:commandButton>
@@ -101,7 +101,7 @@
                     <div class="d-flex flex-wrap">
                       <ui:repeat value="#{menuBean.foodAndDrink}" var="menuObj">
                         <h:commandButton rendered="#{menuObj.kind=='drink'}"
-                          value="#{menuObj.name}" onclick="addItem('#{menuObj.id}')"
+                          value="#{menuObj.name}" onclick="addItem('#{menuObj.id}', '#{menuObj.name}')"
                           styleClass="badge badge-success p-3 m-1 d-block">
                           <f:ajax execute="@form" render="@none" ></f:ajax>
                         </h:commandButton>
@@ -114,9 +114,12 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary" onclick="sendParams()" >Confirm</button>
-          <h:inputText style="display: none;" id="txtOrder" value="#{home.test}"></h:inputText>
-          <h:commandButton value="B" id="print" ajax="false" action="#{home.print()}" style="display: none;" />
+          <button type="button" class="btn btn-primary" onclick="closeModal()">Cancel</button>
+          <button type="button" class="btn btn-primary" onclick="sendPayment()">Payment</button>
+          <button type="button" class="btn btn-primary" onclick="sendParams()">Confirm</button>
+          <h:inputText style="display: none;" id="txtOrder" value="#{home.postContext}"></h:inputText>
+          <h:commandButton value="B" id="createOrder" ajax="false" action="#{home.createOrder()}" style="display: none;" />
+          <h:commandButton value="B" id="payment" ajax="false" action="#{home.payment()}" style="display: none;" />
         </div>
       </div>
     </div>
@@ -129,7 +132,7 @@
             <h:graphicImage styleClass="img-fluid" library="images" name="table.png"
               style="#{table.table.isEmpty() ? 'background-color: white' : 'background-color: red'}" />
             <h:commandButton update="render" value="#{table.id}" actionListener="#{home.listener(table.id)}"
-              onclick="showModal('#{table.id}')"
+              onclick="showModal('#{table.id}', '#{home.food}')"
               styleClass="badge badge-info d-block p-1 btn btn-primary btn-block mt-2" type="button">
               <f:ajax event="click" render=":mainForm:tableFood" listener="#{home.listener(table.id)}"></f:ajax>
             </h:commandButton>

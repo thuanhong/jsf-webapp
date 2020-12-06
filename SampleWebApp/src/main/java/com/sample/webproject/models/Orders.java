@@ -13,6 +13,7 @@ import javax.persistence.Table;
 import javax.persistence.ManyToOne;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import org.hibernate.annotations.CreationTimestamp;
 
 import com.sample.webproject.models.Staff;
 import com.sample.webproject.models.OrderAndFood;
@@ -39,7 +40,8 @@ public class Orders {
 	@Column(name = "total")
 	private int total;
 
-	@Column(name = "createAt")
+    @Column(name = "createAt")
+    @CreationTimestamp
 	private Date createAt;
 
     @ManyToOne

@@ -13,13 +13,13 @@ import javax.persistence.Table;
 import javax.persistence.OneToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.JoinColumn;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.sample.webproject.models.Orders;
-import com.sample.webproject.models.Role;
 
 @Entity
 @Table(name = "Staff")
@@ -39,7 +39,8 @@ public class Staff{
 	@Column(name = "address")
 	private String address;
 
-	@Column(name = "create_at")
+    @Column(name = "create_at")
+    @CreationTimestamp
 	private Date createdAt;
 
 	@Column(name = "password")

@@ -1,0 +1,25 @@
+<persistence version="2.1"
+xmlns="http://xmlns.jcp.org/xml/ns/persistence" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+    <persistence-unit name="jpaexample">
+        <provider>org.hibernate.ejb.HibernatePersistence</provider>
+
+        <class>com.sample.webproject.models.Tables</class>
+        <class>com.sample.webproject.models.OrderAndFood</class>
+        <class>com.sample.webproject.models.Orders</class>
+        <class>com.sample.webproject.models.Staff</class>
+        <class>com.sample.webproject.models.Menu</class>
+        <properties>
+            <property name="hibernate.connection.url" value="jdbc:mysql://database:3306/javawebtutor" />
+            <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />
+            <property name="hibernate.connection.username" value="user" />
+            <property name="hibernate.connection.password" value="password" />
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
+            <property name="hibernate.hbm2ddl.auto" value="update" />
+            <property name="hibernate.show_sql" value="true" />
+            <property name="use_sql_comments" value="true" />
+            <property name="hibernate.format_sql" value="true" />
+        </properties>
+    </persistence-unit>
+</persistence>
