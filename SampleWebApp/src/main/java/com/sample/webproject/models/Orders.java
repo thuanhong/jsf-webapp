@@ -30,7 +30,6 @@ import java.util.List;
 public class Orders {
 	@Id
 	@Column(name = "id")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private String id;
 	
     @ManyToOne
@@ -40,8 +39,10 @@ public class Orders {
 	@Column(name = "total")
 	private int total;
 
+    // @Column(name = "status")
+    // private int status;
+
     @Column(name = "createAt")
-    @CreationTimestamp
 	private Date createAt;
 
     @ManyToOne
@@ -60,6 +61,7 @@ public class Orders {
         this.table_id = table_id;
         this.total = total;
         this.staff = staff;
+        // this.status = 1;
     }
 
     /**
@@ -145,5 +147,4 @@ public class Orders {
     public void setOrder(List<OrderAndFood> order) {
         this.order = order;
     }
-
 }

@@ -44,6 +44,7 @@ public class Home implements Serializable {
     public Home() {
         this.Table = TableDAO.GetAll();
         this.PostContext = "";
+        OrderDAO.GetAll();
     }
 
     public void listener() {
