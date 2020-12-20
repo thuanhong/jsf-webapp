@@ -5,7 +5,7 @@ services:
     ports:
       - "8080:8080"
     volumes:
-      - ~/jsf-webapp:/app
+      - .:/app
     depends_on:
       - database
     environment:

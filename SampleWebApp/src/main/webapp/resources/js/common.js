@@ -15,7 +15,7 @@ const templateOrder = `
       <strong class="mr-auto text-primary">TITLE FOOD</strong>
       <div class="input-group mb-3" style="width: 7vw">
         <div class="btn btn-success" onclick="decrementAmount(this, 'TITLE')" type="submit">-</div>
-        <input type="text" class="form-control" style="border-radius: 5px" value=1>
+        <input type="text" class="form-control" style="border-radius: 5px " size="20" value=1>
         <div class="btn btn-primary" onclick="incrementAmount(this, 'TITLE')" type="button">+</div>  
       </div>
       <button type="button" class="ml-2 mb-1 close" onclick="removeItem(this, 'TITLE')" data-dismiss="toast">&times;</button>

@@ -8,5 +8,5 @@ reset:
 run:
 	docker exec -it jsf_web_1 /bin/sh
 initdb:
-	mysql -h 127.0.0.1 -P 3307 -u user javawebtutor -ppassword < ./sql_query/Generate.sql
+	mysql -h 127.0.0.1 -P 3307 -u user javawebtutor -ppassword < ./init.sql
 
