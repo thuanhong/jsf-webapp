@@ -15,7 +15,7 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 </h:head>
 <h:body>
-  <div class="navbar navbar-expand-md bg-dark navbar-dark">      
+  <div class="navbar navbar-expand-md bg-dark navbar-dark">
     <h:commandLink styleClass="navbar-brand" action="home" value="Coffee" />
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
       <span class="navbar-toggler-icon"></span>
@@ -28,8 +28,10 @@
   <div class="container">
     <canvas id="myChart" width="400" height="400"></canvas>
   </div>
-
+<h:outputText id='context' style="display:none" value="#{adminBean.paymentList}" />
   <h:outputScript name="admin.js" library='js'></h:outputScript>
 </h:body>
-
+<script> let a = document.getElementById("context");
+console.console.log(a);
+</script>
 </html>
