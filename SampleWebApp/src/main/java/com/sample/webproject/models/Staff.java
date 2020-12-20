@@ -20,6 +20,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.sample.webproject.models.Orders;
+import com.sample.webproject.models.Role;
+
 
 @Entity
 @Table(name = "Staff")
@@ -46,12 +48,15 @@ public class Staff{
 	@Column(name = "password")
 	private String password;
 
+
+
 	@OneToMany(mappedBy = "staff")
     private List<Orders> order = new ArrayList<Orders>();
 
-    // @ManyToOne
-    // @JoinColumn(name="role_name")
-	// private Role role;
+    @ManyToOne
+    @JoinColumn(name="role_id")
+	private Role roleId;
+
 
     /**
      * @return int return the id
@@ -65,6 +70,17 @@ public class Staff{
      */
     public void setId(int id) {
         this.id = id;
+    }
+
+    public Role getRoleId() {
+        return roleId;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setRoleId(Role roleId) {
+        this.roleId = roleId;
     }
 
     /**

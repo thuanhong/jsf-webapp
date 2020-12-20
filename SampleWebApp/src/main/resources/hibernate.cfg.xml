@@ -19,5 +19,8 @@
         <mapping class="com.sample.webproject.models.Orders" />
         <mapping class="com.sample.webproject.models.Staff" />
         <mapping class="com.sample.webproject.models.Menu" />
+        <mapping class="com.sample.webproject.models.Role" />
+        <mapping class="com.sample.webproject.models.Payment" />
+
     </session-factory>
 </hibernate-configuration>

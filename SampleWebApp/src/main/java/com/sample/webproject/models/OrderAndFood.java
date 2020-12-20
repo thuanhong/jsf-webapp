@@ -16,6 +16,7 @@ import javax.persistence.OneToMany;
 
 import com.sample.webproject.models.Orders;
 import com.sample.webproject.models.Menu;
+import com.sample.webproject.models.Payment;
 import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +37,10 @@ public class OrderAndFood{
     @ManyToOne
     @JoinColumn(name="order_id")
 	private Orders orderId;
+
+    @ManyToOne
+    @JoinColumn(name="payment_id")
+	private Orders paymentId;
 
     @ManyToOne
     @JoinColumn(name="food_id")
