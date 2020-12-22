@@ -1,86 +1,86 @@
--- create table Menu
--- (
---     id     int auto_increment
---         primary key,
---     kind   varchar(255) null,
---     name   varchar(255) null,
---     price  varchar(255) null,
---     status varchar(255) null
--- );
+create table Menu
+(
+    id     int auto_increment
+        primary key,
+    kind   varchar(255) null,
+    name   varchar(255) null,
+    price  varchar(255) null,
+    status varchar(255) null
+);
 
--- create table Role
--- (
---     id        int auto_increment
---         primary key,
---     role_name varchar(255) null
--- );
+create table Role
+(
+    id        int auto_increment
+        primary key,
+    role_name varchar(255) null
+);
 
--- create table Staff
--- (
---     id         int auto_increment
---         primary key,
---     address    varchar(255) null,
---     create_at  datetime     null,
---     dob        datetime     null,
---     password   varchar(255) null,
---     staff_name varchar(255) null,
---     role_id    int          null,
---     constraint FKc270scukp9o70yt499swxjqah
---         foreign key (role_id) references Role (id)
--- );
+create table Staff
+(
+    id         int auto_increment
+        primary key,
+    address    varchar(255) null,
+    create_at  datetime     null,
+    dob        datetime     null,
+    password   varchar(255) null,
+    staff_name varchar(255) null,
+    role_id    int          null,
+    constraint FKc270scukp9o70yt499swxjqah
+        foreign key (role_id) references Role (id)
+);
 
--- create table Tables
--- (
---     id       int auto_increment
---         primary key,
---     capacity int          null,
---     position varchar(255) null,
---     status   varchar(255) null
--- );
+create table Tables
+(
+    id       int auto_increment
+        primary key,
+    capacity int          null,
+    position varchar(255) null,
+    status   varchar(255) null
+);
 
--- create table Orders
--- (
---     id       varchar(255) not null
---         primary key,
---     createAt datetime     null,
---     total    int          null,
---     staffId  int          null,
---     tableId  int          null,
---     constraint FK5rptbmu9vfvqnnxlo5illw6m6
---         foreign key (tableId) references Tables (id),
---     constraint FKt61u78ynrfvyyf169eyc1iu1r
---         foreign key (staffId) references Staff (id)
--- );
+create table Orders
+(
+    id       varchar(255) not null
+        primary key,
+    createAt datetime     null,
+    total    int          null,
+    staffId  int          null,
+    tableId  int          null,
+    constraint FK5rptbmu9vfvqnnxlo5illw6m6
+        foreign key (tableId) references Tables (id),
+    constraint FKt61u78ynrfvyyf169eyc1iu1r
+        foreign key (staffId) references Staff (id)
+);
 
--- create table OrderAndFood
--- (
---     id         int auto_increment
---         primary key,
---     amount     int          null,
---     food_id    int          null,
---     order_id   varchar(255) null,
---     payment_id varchar(255) null,
---     constraint FK3r23napidu4r5j7yejsee97r8
---         foreign key (order_id) references Orders (id),
---     constraint FKojtfirrskrihuuxt5lge8llj
---         foreign key (payment_id) references Orders (id),
---     constraint FKrv4nnkla2v284eh8omflv0jpf
---         foreign key (food_id) references Menu (id)
--- );
+create table OrderAndFood
+(
+    id         int auto_increment
+        primary key,
+    amount     int          null,
+    food_id    int          null,
+    order_id   varchar(255) null,
+    payment_id varchar(255) null,
+    constraint FK3r23napidu4r5j7yejsee97r8
+        foreign key (order_id) references Orders (id),
+    constraint FKojtfirrskrihuuxt5lge8llj
+        foreign key (payment_id) references Orders (id),
+    constraint FKrv4nnkla2v284eh8omflv0jpf
+        foreign key (food_id) references Menu (id)
+);
 
--- create table Payment
--- (
---     id       varchar(255) not null
---         primary key,
---     createAt datetime     null,
---     total    int          null,
---     staffId  int          null,
---     tableId  int          null,
---     constraint FKjxiv2g0at8c5n2nlvb3visc9w
---         foreign key (tableId) references Tables (id),
---     constraint FKlfiskfuiuv91tw320gxo58f0q
---         foreign key (staffId) references Staff (id)
--- );
+create table Payment
+(
+    id       varchar(255) not null
+        primary key,
+    createAt datetime     null,
+    total    int          null,
+    staffId  int          null,
+    tableId  int          null,
+    constraint FKjxiv2g0at8c5n2nlvb3visc9w
+        foreign key (tableId) references Tables (id),
+    constraint FKlfiskfuiuv91tw320gxo58f0q
+        foreign key (staffId) references Staff (id)
+);
 
 
 

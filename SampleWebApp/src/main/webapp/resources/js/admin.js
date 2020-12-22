@@ -1,13 +1,24 @@
-window.onload = function() {
-  var ctx = document.getElementById('myChart').getContext('2d');
+window.onload = function () {
+  let a = document.getElementById("context");
+  var ctx = document.getElementById("myChart").getContext("2d");
   var myChart = new Chart(ctx, {
-      type: 'line',
-      data: {
-          labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-          datasets: [{
-              label: '# of Votes',
-              data: [12, 19, 3, 5, 2, 3],
-               /* backgroundColor: [
+    type: "line",
+    data: {
+      labels: [
+        "Thang 5",
+        "Thang 6",
+        "Thang 7",
+        "Thang 8",
+        "Thang 9",
+        "Thang 10",
+        "Thang 11",
+        "Thang 12",
+      ],
+      datasets: [
+        {
+          label: "# of Votes",
+          data: a.innerHTML,
+          /* backgroundColor: [
                   'rgba(255, 99, 132, 0.2)',
                   'rgba(54, 162, 235, 0.2)',
                   'rgba(255, 206, 86, 0.2)',
@@ -23,43 +34,44 @@ window.onload = function() {
                   'rgba(153, 102, 255, 1)',
                   'rgba(255, 159, 64, 1)'
               ], */
-              backgroundColor: 'rgba(255, 99, 132, 0.2)',
-              borderColor: 'rgba(255, 99, 132, 1)',
-              fill: false,
-          }]
+          backgroundColor: "rgba(255, 99, 132, 0.2)",
+          borderColor: "rgba(255, 99, 132, 1)",
+          fill: false,
+        },
+      ],
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        title: {
+          display: true,
+          text: "Chart.js Line Chart",
+        },
+        tooltip: {
+          mode: "index",
+          intersect: false,
+        },
       },
-      options: {
-          responsive: true,
-          plugins: {
-            title: {
-              display: true,
-              text: 'Chart.js Line Chart'
-            },
-            tooltip: {
-              mode: 'index',
-              intersect: false,
-            }
+      hover: {
+        mode: "nearest",
+        intersect: true,
+      },
+      scales: {
+        x: {
+          display: true,
+          scaleLabel: {
+            display: true,
+            labelString: "Month",
           },
-          hover: {
-            mode: 'nearest',
-            intersect: true
+        },
+        y: {
+          display: true,
+          scaleLabel: {
+            display: true,
+            labelString: "Value",
           },
-          scales: {
-            x: {
-              display: true,
-              scaleLabel: {
-                display: true,
-                labelString: 'Month'
-              }
-            },
-            y: {
-              display: true,
-              scaleLabel: {
-                display: true,
-                labelString: 'Value'
-              }
-            }
-          }
-        }
-    });
+        },
+      },
+    },
+  });
 };

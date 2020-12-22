@@ -16,10 +16,9 @@ public class PaymentDAO {
 		Payment payment = session.load(Payment.class, id);
 		return payment;
 	}
-	public static List<Payment> GetAll(int id) {
+	public static List<Integer> GetAll() {
         Session session = HibernateUtil.getSessionFactory().openSession();
-		List<Payment> list = session.createQuery("select * from Payment")
-			.setParameter("id", id).list();
+		List<Integer> list = session.createQuery("SELECT sum(total) FROM Payment GROUP BY MONTH(createAt)").list();
 		return list;
 	}
 
