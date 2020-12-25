@@ -17,8 +17,9 @@
 </h:head>
 <h:body>
   <h:form id="mainForm">
+    <p:remoteCommand name="remote" actionListener="#{home.listener()}" update="text"/>
     <div class="navbar navbar-expand-md bg-dark navbar-dark">
-      <h:commandLink styleClass="navbar-brand" action="home" value="Coffee" />
+      <h:commandLink styleClass="navbar-brand" action="home?faces-redirect=true" value="Coffee" />
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
         <span class="navbar-toggler-icon"></span>
       </button>

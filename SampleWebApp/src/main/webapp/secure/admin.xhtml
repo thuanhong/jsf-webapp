@@ -42,7 +42,7 @@
         <div id="page-content-wrapper">
 
           <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-            <h:commandLink styleClass="navbar-brand" action="home" value="Coffee" />
+            <h:commandLink styleClass="navbar-brand" action="home?faces-redirect=true" value="Coffee" />
             <div class="collapse navbar-collapse" id="collapsibleNavbar">
               <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
                 <li class="nav-item">
@@ -61,6 +61,35 @@
               value="#{adminBean.paymentList}"
             />
           </div>
+            <div>
+              <h:dataTable id="tableOrder" styleClass="table" value="#{adminBean.orders}" var="order">
+                <h:column>
+                  <f:facet name="header">ID</f:facet>
+                  #{order.id}
+                </h:column>
+
+                <h:column>
+                  <f:facet name="header">Staff</f:facet>
+                  #{order.staff.staffName}
+                </h:column>
+
+                <h:column>
+                  <f:facet name="header">Table</f:facet>
+                  #{order.table_id.id}
+                </h:column>
+
+                <h:column>
+                  <f:facet name="header">Total</f:facet>
+                  #{order.total}
+                </h:column>
+
+                <h:column>
+                  <f:facet name="header">Action</f:facet>
+                  <h:commandButton value="Delete" action="#{adminBean.deleteOrder(order.id)}"
+                    styleClass="badge badge-success p-3 m-1 d-block" />
+                </h:column>
+              </h:dataTable>
+            </div>
         </div>
         <!-- /#page-content-wrapper -->
       </div>

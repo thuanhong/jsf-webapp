@@ -49,10 +49,12 @@ public class Home implements Serializable {
     }
 
     public void listener() {
+        this.Table = TableDAO.GetAll();
     }
 
     public void listener(int id) {
         this.Food = OrderAndFoodDAO.GetAll(id);
+        this.Table = TableDAO.GetAll();
     }
 
     public void createOrder() {
