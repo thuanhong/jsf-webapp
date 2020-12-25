@@ -40,7 +40,7 @@ public class OrderAndFood{
 
     @ManyToOne
     @JoinColumn(name="payment_id")
-	private Orders paymentId;
+	private Payment paymentId;
 
     @ManyToOne
     @JoinColumn(name="food_id")

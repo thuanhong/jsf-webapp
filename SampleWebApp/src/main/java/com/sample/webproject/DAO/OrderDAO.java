@@ -16,20 +16,9 @@ public class OrderDAO {
 		return list;
 	}
 
-	public static void createNewOrder(Orders newOrder) {
+	public static Orders getOrderById(String id) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
-		try {
-			session.beginTransaction();
-			session.save(newOrder);
-			session.getTransaction().commit();
-			System.out.println("insert success!");
-		} catch (RuntimeException e) {
-			session.getTransaction().rollback();
-			e.printStackTrace();
-		} finally {
-			session.flush();
-			HibernateUtil.shutdown();
-		}
+		Orders order = session.load(Orders.class, id);
+		return order;
 	}
-
 }

@@ -11,6 +11,7 @@ import org.hibernate.Session;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Iterator;
+import javax.faces.bean.RequestScoped;
 
 import com.sample.webproject.util.HibernateUtil;
 import com.sample.webproject.models.Payment;
@@ -18,14 +19,14 @@ import com.sample.webproject.DAO.PaymentDAO;
 
 
 @ManagedBean
-@SessionScoped
+@RequestScoped
 public class AdminBean implements Serializable {
     private List<Integer> PaymentList;
     public String PaymentText;
 
     public AdminBean() {
-        this.PaymentList = PaymentDAO.GetAll();
-        this.PaymentText= "TAI";
+        this.PaymentList = PaymentDAO.getPaymentStatic();
+        this.PaymentText= "";
 
         // System.out.println(this.PaymentList);
     }

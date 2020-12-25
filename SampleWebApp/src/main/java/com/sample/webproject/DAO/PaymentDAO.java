@@ -16,11 +16,17 @@ public class PaymentDAO {
 		Payment payment = session.load(Payment.class, id);
 		return payment;
 	}
-	public static List<Integer> GetAll() {
+	public static List<Integer> getPaymentStatic() {
         Session session = HibernateUtil.getSessionFactory().openSession();
 		List<Integer> list = session.createQuery("SELECT sum(total) FROM Payment GROUP BY MONTH(createAt)").list();
 		return list;
 	}
+	public static List<Payment> getAll(){
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		List<Payment> paymentList = session.createQuery("FROM Payment").list();
+		return paymentList;
+	}
+
 
 
 }

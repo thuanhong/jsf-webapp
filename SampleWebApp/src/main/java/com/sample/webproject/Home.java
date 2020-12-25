@@ -11,11 +11,13 @@ import org.hibernate.Session;
 import javax.persistence.Query;
 import java.io.*;
 import java.util.*;
+import java.text.SimpleDateFormat;
 
 import com.sample.webproject.models.Staff;
 import com.sample.webproject.models.Tables;
 import com.sample.webproject.models.Orders;
 import com.sample.webproject.models.OrderAndFood;
+import com.sample.webproject.models.Menu;
 
 import com.sample.webproject.util.HibernateUtil;
 import com.sample.webproject.util.SessionUtils;
@@ -44,7 +46,6 @@ public class Home implements Serializable {
     public Home() {
         this.Table = TableDAO.GetAll();
         this.PostContext = "";
-        OrderDAO.GetAll();
     }
 
     public void listener() {
@@ -80,13 +81,17 @@ public class Home implements Serializable {
         Query createNewOrder = entityManager.createNativeQuery("INSERT INTO Orders (id, total, staffId, tableId) VALUES (?, ?, ?, ?)");
         entityManager.getTransaction().begin();
 
+        int total = 0;
+
+        for (Map.Entry<String,Integer> entry : postOrder.getListFood().entrySet()) {
+            Menu menu  = MenuDAO.getMenuById(Integer.parseInt(entry.getKey()));
+            total += Integer.parseInt(menu.getPrice()) * entry.getValue() * 25000;
+        }
+
         try {
-            System.out.println("-----------------------------");
-            System.out.println(this.Food.isEmpty());
-            System.out.println("-----------------------------");
             if (this.Food.isEmpty()) {
                 createNewOrder.setParameter(1, postOrder.getOrderId());
-                createNewOrder.setParameter(2, 100);
+                createNewOrder.setParameter(2, total);
                 createNewOrder.setParameter(3, postOrder.getStaffId());
                 createNewOrder.setParameter(4, postOrder.getTableId());
                 createNewOrder.executeUpdate();
@@ -134,13 +139,46 @@ public class Home implements Serializable {
         EntityManager entityManager = PersistenceUtil.getEntityManager();
         entityManager.getTransaction().begin();
         
-        entityManager.createQuery("DELETE FROM OrderAndFood WHERE order_id = :orderId")
-            .setParameter("orderId", postOrder.getOrderId())
-            .executeUpdate();
 
-        entityManager.createQuery("DELETE FROM Orders WHERE id = :id")
-            .setParameter("id", postOrder.getOrderId())
-            .executeUpdate();
+        Query createNewOrder = entityManager.createNativeQuery("INSERT INTO Payment (id, total, staffId, tableId, createAt) VALUES (?, ?, ?, ?, ?)");
+        String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
+
+        String createAt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+        
+        Orders order = OrderDAO.getOrderById(postOrder.getOrderId());
+
+        try {
+            if (!this.Food.isEmpty()) {
+                createNewOrder.setParameter(1, timeStamp);
+                createNewOrder.setParameter(2, order.getTotal());
+                createNewOrder.setParameter(3, postOrder.getStaffId());
+                createNewOrder.setParameter(4, postOrder.getTableId());
+                createNewOrder.setParameter(5, createAt);
+                createNewOrder.executeUpdate();
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+            System.out.println("Something was wrong");
+        }
+
+        
+        try {
+            entityManager.createQuery("UPDATE OrderAndFood SET payment_id=:pay_id, order_id = NULL WHERE order_id=:ids")
+                .setParameter("pay_id",timeStamp)
+                .setParameter("ids", postOrder.getOrderId())
+                .executeUpdate();
+    
+            entityManager.createQuery("DELETE FROM Orders WHERE id = :id")
+                .setParameter("id", postOrder.getOrderId())
+                .executeUpdate();
+        } catch (Exception e) {
+
+            System.out.println("-----------------------------");
+            System.out.println(e);
+            System.out.println("Something was wrong");
+            System.out.println("-----------------------------");
+        }
+
 
         entityManager.getTransaction().commit();
 
